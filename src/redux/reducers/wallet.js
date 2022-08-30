@@ -1,4 +1,4 @@
-import { API_FAIL, API_REQUEST, API_SUCESS, NEW_ENTRIES } from '../actions';
+import { API_FAIL, API_REQUEST, NEW_ENTRIES, SEND_CURRENCIES } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [], // array de string
@@ -8,12 +8,6 @@ const INITIAL_STATE = {
   loading: true,
   apiRetur: [], // array dos objetos retornados pela api
   total: 0.00,
-};
-
-const arrObject = (apiRetur) => {
-  const arr = [];
-  Object.entries(apiRetur).forEach((item) => arr.push(item));
-  return arr;
 };
 
 const newEntriesWallet = (estado, payload, apiReturn) => {
@@ -39,19 +33,16 @@ const wallet = (state = INITIAL_STATE, action) => {
     ...state,
     loading: true,
   };
-  case API_SUCESS: return {
+  case SEND_CURRENCIES: return {
     ...state,
-    currencies: action.payload.arr,
-    apiRetur: arrObject(action.payload),
-    // ...action.payload,
+    currencies: action.payload,
   };
   case API_FAIL: return {
     ...state,
   };
   case NEW_ENTRIES: return {
     ...state,
-    // expenses: [{ ...action.payload }, ];
-    currencies: action.payload.arr,
+    // currencies: action.payload.arr,
     expenses: newEntriesWallet(state, action.payload, action.apiReturn),
     total: totalWallet(action.payload, action.apiReturn, state),
   };

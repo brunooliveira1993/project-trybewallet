@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getWalletApi, newEntreisWalletApi } from '../redux/actions';
+import { getWalletApi, newEntreisWalletApi, sendCurrencies } from '../redux/actions';
 import Table from '../components/Table';
 
 class Wallet extends React.Component {
@@ -16,10 +16,12 @@ class Wallet extends React.Component {
   };
 
   async componentDidMount() {
+    const { dispatch } = this.props;
     const data = await getWalletApi();
     const arr = [];
     Object.keys(data).forEach((item) => arr.push(item));
     arr.splice(1, 1);
+    dispatch(sendCurrencies(arr));
     this.setState({ arr });
     return arr;
   }

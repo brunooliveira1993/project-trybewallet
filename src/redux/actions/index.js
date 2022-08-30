@@ -11,6 +11,7 @@ export const API_REQUEST = 'API_REQUEST';
 export const API_SUCESS = 'API_SUCESS';
 export const API_FAIL = 'API_FAIL';
 export const NEW_ENTRIES = 'NEW_ENTRIES';
+export const SEND_CURRENCIES = 'SEND_CURRENCIES';
 
 export const newEntries = (payload, apiReturn) => ({
   type: NEW_ENTRIES,
@@ -27,10 +28,10 @@ const apiRequestInfo = () => ({
   type: API_REQUEST,
 });
 
-// const receiveApiSucess = (response) => ({
-//   type: API_SUCESS,
-//   payload: response,
-// });
+export const sendCurrencies = (payload) => ({
+  type: SEND_CURRENCIES,
+  payload,
+});
 
 const receiveApiFail = (erro) => ({
   type: API_FAIL,
