@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getWalletApi, newEntreisWalletApi, sendCurrencies } from '../redux/actions';
+import { getWalletApi, newEntreisWalletApi,
+  sendCurrencies, substitutEntreisWalletApi } from '../redux/actions';
 import Table from '../components/Table';
+
+const DEFALT_TAG = 'Alimentação';
 
 class Wallet extends React.Component {
   state = {
@@ -10,7 +13,7 @@ class Wallet extends React.Component {
     value: '',
     description: '',
     method: 'Dinheiro',
-    tag: 'Alimentação',
+    tag: DEFALT_TAG,
     currency: 'USD',
     arr: [],
   };
@@ -31,7 +34,7 @@ class Wallet extends React.Component {
     this.setState({ [name]: value });
   };
 
-  dispatchFunc = (state) => {
+  dispatchNewEntries = (state) => {
     const { id } = this.state;
     const idValue = 1;
     const newVelue = id + idValue;
@@ -42,7 +45,28 @@ class Wallet extends React.Component {
       value: '',
       description: '',
       method: 'Dinheiro',
-      tag: 'Alimentação',
+      tag: DEFALT_TAG,
+      currency: 'USD',
+    });
+  };
+
+  dispatchSubstitutEntries = (state) => {
+    const { wallet, dispatch } = this.props;
+    console.log(wallet.idToEdit);
+    const teste = {
+      ...state,
+      id: Number(wallet.idToEdit),
+    };
+    dispatch(substitutEntreisWalletApi(teste));
+    const { id } = this.state;
+    const idValue = 1;
+    const newVelue = id + idValue;
+    this.setState({
+      id: newVelue,
+      value: '',
+      description: '',
+      method: 'Dinheiro',
+      tag: DEFALT_TAG,
       currency: 'USD',
     });
   };
@@ -134,12 +158,25 @@ class Wallet extends React.Component {
               <option value="Saúde">Saúde</option>
             </select>
           </fieldset>
-          <button
-            type="button"
-            onClick={ () => (this.dispatchFunc(this.state)) }
-          >
-            Adicionar despesa
-          </button>
+          {
+            wallet.editor
+              ? (
+                <button
+                  type="button"
+                  onClick={ () => (this.dispatchSubstitutEntries(this.state)) }
+                >
+                  Editar despesa
+                </button>
+              )
+              : (
+                <button
+                  type="button"
+                  onClick={ () => (this.dispatchNewEntries(this.state)) }
+                >
+                  Adicionar despesa
+                </button>
+              )
+          }
         </header>
         <section>
           <Table currencySelect={ currency } />

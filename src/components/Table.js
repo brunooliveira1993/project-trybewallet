@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { removeItem, editItem } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { wallet, currencySelect } = this.props;
+    const { wallet } = this.props;
 
     const createElementName = (item) => {
       const moedas = Object.entries(item.exchangeRates);
@@ -24,6 +25,20 @@ class Table extends Component {
       const select = moedas.find((element) => element[1].code === item.currency);
       const result = select[1].ask * item.value;
       return Number(result.toFixed(2));
+    };
+
+    const eventRemove = (event) => {
+      const { dispatch } = this.props;
+      const click = event.target.id;
+      dispatch(removeItem(click));
+    };
+
+    const eventEdit = (event) => {
+      const { dispatch } = this.props;
+      const click = event.target.id;
+      const valueItem = event.target.className;
+      console.log(valueItem);
+      dispatch(editItem(click, valueItem));
     };
 
     return (
@@ -50,7 +65,28 @@ class Table extends Component {
               <td>{createElementName(item)}</td>
               <td>{createElementCambio(item)}</td>
               <td>{createElementConvert(item)}</td>
-              <td>{currencySelect}</td>
+              <td>{item.currency}</td>
+              <td>
+                <button
+                  id={ item.id }
+                  className={ createElementConvert(item) }
+                  type="button"
+                  data-testid="edit-btn"
+                  onClick={ eventEdit }
+                >
+                  Editar
+
+                </button>
+                <button
+                  id={ item.id }
+                  onClick={ eventRemove }
+                  type="button"
+                  data-testid="delete-btn"
+                >
+                  Excluir
+
+                </button>
+              </td>
             </tr>
           </tbody>
         ))}
@@ -64,7 +100,7 @@ const mapStateToProps = (state) => ({
 
 Table.propTypes = {
   wallet: PropTypes.string.isRequired,
-  currencySelect: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);
