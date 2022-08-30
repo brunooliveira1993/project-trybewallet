@@ -33,10 +33,10 @@ class Table extends Component {
         <th>Método de pagamento</th>
         <th>Valor</th>
         <th>Moeda</th>
-        <th>Cambio utilizado</th>
+        <th>Câmbio utilizado</th>
         <th>Valor convertido</th>
         <th>Moeda de conversão</th>
-        <th>Editar/excluir</th>
+        <th>Editar/Excluir</th>
         {wallet.expenses.map((item) => (
           <tbody key={ item.id }>
             <tr>
