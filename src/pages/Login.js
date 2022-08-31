@@ -22,7 +22,6 @@ class Login extends React.Component {
     const { name, value } = event.target;
     const emailValidation = this.validateEmail(email);
     const senhaValidation = senha.length >= number;
-    console.log(senhaValidation);
     if (emailValidation === true && senhaValidation === true) {
       this.setState({ disabled: false });
     }

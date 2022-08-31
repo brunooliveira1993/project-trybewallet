@@ -52,7 +52,6 @@ class Wallet extends React.Component {
 
   dispatchSubstitutEntries = (state) => {
     const { wallet, dispatch } = this.props;
-    console.log(wallet.idToEdit);
     const teste = {
       ...state,
       id: Number(wallet.idToEdit),

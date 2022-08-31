@@ -37,7 +37,6 @@ class Table extends Component {
       const { dispatch } = this.props;
       const click = event.target.id;
       const valueItem = event.target.className;
-      console.log(valueItem);
       dispatch(editItem(click, valueItem));
     };
 
