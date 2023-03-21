@@ -160,6 +160,7 @@ As despesas salvas no Redux ficarão com um formato semelhante ao seguinte:
 
 Clique para expandir.
 Tabela de Gastos
+
 9. Desenvolva uma tabela com os gastos contendo as seguintes características:
 A tabela deve possuir um cabeçalho exatamente com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido, Moeda de conversão e Editar/Excluir
 
@@ -178,6 +179,7 @@ Utilize sempre o formato 0.00 (número - ponto - duas casas decimais)
 O que será testado:
 
 - A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão.
+
 - A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.
 10. Crie um botão para deletar uma despesa da tabela contendo as seguintes características:
 image
@@ -191,6 +193,7 @@ O que será testado:
 - O botão deve estar dentro do último item da linha da tabela e deve possuir `data-testid="delete-btn"`
 - Ao ser clicado, o botão deleta a linha da tabela, alterando o estado global
 Bônus
+
 11. Crie um botão para editar uma despesa da tabela contendo as seguintes características:
 image
 
