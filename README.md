@@ -1,488 +1,211 @@
-# Boas-vindas ao repositório do projeto Trybewarts Wizarding School! 🧙
+Boas vindas ao repositório do projeto Trybe Wallet!
+Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por Slack! #vqv rocket
 
-<details>
-  <summary><strong>🧑‍💻 O que deverá ser desenvolvido</strong></summary><br />
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
 
-Neste projeto, você vai desenvolver uma página de formulário da Escola de Magia de Trybewarts, em que as pessoas estudantes poderão enviar seus feedbacks sobre ela. O tema desse projeto é baseado na obra 'Harry Potter', de J. K. Rowling, já que programar é o mais próximo que podemos chegar de algo **verdadeiramente mágico**! Mas não se preocupe se não tiver conhecimento sobre o universo da obra original, pois essa é uma versão própria da Escola de Bruxaria e você terá todas as informações necessárias para a construção do projeto nesse **README**!
+Habilidades
+Neste projeto, verificamos se voce é capaz de:
 
-</details>
+Criar um store Redux em aplicações React
 
-<details>
-  <summary><strong>🗓 Entrega</strong></summary><br />
+Criar reducers no Redux em aplicações React
 
-  * Este projeto é em equipe
-  * São 1 dia de projeto
+Criar actions no Redux em aplicações React
 
-</details>
+Criar dispatchers no Redux em aplicações React
 
-# Requisitos Obrigatórios
+Conectar Redux aos componentes React
 
-Não se esqueça de criar os arquivos `index.html`, `style.css` e `script.js`!
+Criar actions assíncronas na sua aplicação React que faz uso de Redux.
 
-⚠️ Lembre-se de que o seu projeto só será avaliado se estiver passando por **todos os _checks_** do **Linter**. Utilize o comando `npm run lint` no seu terminal para verificar os _checks_ do **Linter** 😉 ⚠️
+Requisitos do projeto
+warning PULL REQUESTS COM ISSUES DE LINTER NÃO SERÃO AVALIADAS. warning
 
-## 1. Crie uma barra verde na parte superior da página
+warning Os gifs são meramente ilustrativos para visualizar o fluxo da aplicação, os nomes devem seguir os requisitos e não o gif. warning
 
-<details>
-  <summary>
-A barra deve possuir a classe <code>header</code>, ser um <code>flex container</code> e ter a cor de fundo <code>rgb(50, 167, 145)</code>
-  </summary><br/>
+Lista de requisitos
+Página de Login
+Crie uma página para que a pessoa usuária se identifique, com email e senha. Esta página deve ser a página inicial de seu aplicativo.
 
-  * Crie um elemento que possua a classe igual a `header`;
-  * Faça com que o header seja um `flex container`;
-  * Adicione ao elemento com a classe `header` a cor de fundo `rgb(50, 167, 145)`;
+image
 
-  **O que será testado:**
+1. Crie uma página inicial de login com os seguintes campos e características:
+A rota para esta página deve ser ‘/’.
 
-  * Existe um elemento com a classe `header`;
-  * O elemento possui a propriedade CSS `display: flex`;
-  * O elemento possui a propriedade CSS `background-color: rgb(50, 167, 145)`.
+Você deve criar um local para que a pessoa usuária insira seu email e senha. Utilize o atributo data-testid="email-input" para o email e data-testid="password-input" para a senha.
 
-</details>
+Crie um botão com o texto ‘Entrar’.
 
-## 2. Adicione o logotipo da Trybewarts
+O que será testado:
 
-<details>
-  <summary>
-    O logotipo deve estar dentro do <code>header</code> e ser um elemento <code>img</code>
-  </summary><br/>
+- A rota para esta página deve ser "/"
+- Existe um local para que o usuário insira seu email e senha
+- Existe um botão com o texto "Entrar"
+2. Realize as seguintes verificações nos campos de email, senha e botão:
+O email está no formato válido, como 'alguem@alguem.com'.
 
-  * Crie uma tag `img` dentro do elemento com a classe `header`:
-    * Adicione a classe `trybewarts-header-logo`;
-    * Adicione o atributo `src` com o valor `images/trybewarts-header-logo.svg`;
+A senha possui 6 ou mais caracteres.
 
-  **O que será testado:**
+Salve o email no estado da aplicação, com a chave email, assim que a pessoa usuária logar.
 
-  * Existe um elemento `img` com a classe `trybewarts-header-logo`;
-  * O elemento possui o atributo `src` apontando para `images/trybewarts-header-logo.svg`.
+A rota deve ser mudada para '/carteira' após o clique no botão 'Entrar'.
 
-</details>
+O que será testado:
 
-## 3. Acrescente um formulário de login no `header`
+- O botão de "Entrar" está desabilitado ao entrar na página
+- O botão de "Entrar está desabilitado quando um email inválido é digitado
+- O botão de "Entrar" está habilitado quando um email e uma senha válidos são passados
+3. Utilize o Redux para salvar no estado global as informações da pessoa logada
+Salve o email no estado da aplicação, com a chave email, assim que o usuário logar.
 
-<details>
-  <summary>
-    O formulário de login deve conter os inputs de <code>email</code>, <code>senha</code> e um botão de login e deve estar posicionado a direita da logo.
-  </summary><br/>
+A rota deve ser mudada para /carteira quando o login for efetuado com sucesso.
 
-* Crie um formulário com a classe `trybewarts-login`;
-* Crie o input de **email** dentro do formulário:
-  * Adicione o atributo `name` com o valor **email**;
-  * Adicione o atributo `placeholder` com o valor **Email**;
-* Crie o input de **senha** dentro do formulário:
- * Adicione o atributo `name` com o valor **password**;
- * Adicione o atributo `placeholder` com o valor **Senha**;
-* Crie um botão com o texto **"Entrar"**;
-* Faça com que o formulário seja um **flex container**;
-* Faça com que o formulário fique a direita da logo;
-* Valide o formulário:
-  * Ao preencher o formulário e clicar no botão, será validado que:
-    * Caso o email seja **"tryber@teste.com"** e a senha seja **"123456"** será emitido um alerta contendo o texto **"Olá, Tryber!"**; 
-    * Em todos os outro casos deverá ser emitido um alerta contendo o texto **"Email ou senha inválidos."**;
+O que será testado:
 
-**De olho na dica 👀:** adicione a propriedade `flex` que faz os elementos terem o espaçamento máximo **entre eles** no **header**
+- O estado global possui a chave `email` no formato esperado
+- A rota deve ser mudada para `/carteira` após o clique no botão
+Página da Carteira
+Crie uma página para gerenciar a carteira de gastos em diversas moedas, e que traga a despesa total em uma moeda só. Esta página deve ser renderizada por um componente chamado Wallet.
 
-**O que será testado:**
+image
+Configurando sua página
+4. Crie uma página para sua carteira com as seguintes características:
+A rota para esta página deve ser /carteira
 
-* Existe um elemento `form` com a classe `trybewarts-login`;
-* Existe um input com o atributo `name` igual a **email** e o `placeholder` igual a **Email**;
-* Existe um input com o atributo `name` igual a **password** e o `placeholder` igual a **Senha**;
-* Existe um botão com o texto `Entrar`;
-* O formulário possui a propriedade CSS `display: flex`;
-* O elemento `form` está à direita da logo;
-* Ao clicar no botão de login dispara um `alert` com o texto `Email ou senha inválidos`, no caso de erro de preenchimento dos dados;
-* Ao clicar no botão de login dispara um `alert` com o texto `Olá, Tryber!`, no caso de preenchimento correto dos dados.
+O componente deve se chamar Wallet e estar localizado na pasta src/pages no arquivo Wallet.js
 
-</details>
+O que será testado:
 
-## 4. Crie um título com o texto "Trybewarts" centralizado dentro do `Header`
+- A rota para esta página deve ser "/carteira"
+- O componente deve se chamar Wallet e estar localizado na pasta "src/pages"
+Header (cabeçalho)
+5. Crie um header para a página de carteira contendo as seguintes características:
+Um elemento que exiba o email da pessoa usuária que fez login.
 
-  <details>
-  <summary>
-  Deve existir um elemento <code>h1</code> com o id <code>trybewarts-header-title</code> e com o texto <strong>"Trybewarts"</strong>
-  </summary><br/>
+Adicione o atributo data-testid="email-field".
+Dica: você deve pegar o email do estado global da aplicação (no Redux)
+Um campo com a despesa total gerada pela lista de gastos.
 
-* Crie a tag `h1` com o `id` igual a `trybewarts-header-title`;
-* Adicione o texto **"Trybewarts"** dentro do `h1`;
-* O título deverá estar no meio da barra verde:
-  * O header deve ter exatamente três elementos filhos;
-  * O filho do meio deve ser o título;
+Adicione o atributo data-testid="total-field".
 
-**O que será testado:**
+Inicialmente esse campo deve exibir o valor 0
 
-* Existe um elemento `h1` com o `id` igual a `trybewarts-header-title` e com o texto `Trybewarts`;
-* O elemento com a classe `header` deve possuir exatos `3` elementos filhos;
-* O filho do meio do elemento com a classe `header` deve ser o título `h1` com o texto `Trybewarts`.
+Um campo que mostre qual câmbio está sendo utilizado, que será neste caso será 'BRL'.
 
-  </details>
+Adicione o atributo data-testid="header-currency-field".
+O que será testado:
 
-## 5. Adicione um formulário no corpo da página
+- Um elemento que exiba o email do usuário que fez login.
+- Crie um campo com a despesa total gerada pela lista de gastos.
+- Crie um campo que mostre que qual câmbio está sendo utilizado, que será neste caso "BRL"
+Formulário de adição de Despesa
+Dica: atente-se ao formato sugerido pelo React para criar formulários.
 
-  <details>
-  <summary>
-  O formulário deve possuir o id <code>evaluation-form</code> e estar dentro de uma tag <code>main</code>
-  </summary><br/>
+<form>
+  <label>
+    Nome:
+    <input type="text" name="name" />
+  </label>
+</form>
+6. Desenvolva um formulário para adicionar uma despesa contendo as seguintes características:
+Um campo para adicionar valor da despesa.
 
-* Crie um formulário com o `id` igual a `evaluation-form`;
-* Insira o formulário dentro de uma tag `main`;
-* Faça com que o formulário seja um `flex container`;
-* Faça com que o `main`, seja um `flex containers`;
-* Adicione uma largura de `675px` ao formulário.
+O campo deverá ter a label Valor.
+Um campo de texto para adicionar a descrição da despesa.
 
-**O que será testado:**
+O campo deverá ter a label Descrição.
+Um campo de select para adicionar em qual moeda será registrada a despesa.
 
-* Existe um elemento `form` com o `id` igual a `evaluation-form`;
-* O elemento `form` está dentro da tag `main`;
-* O elemento `main` e o `form` possuem a propriedade CSS `display: flex`;
-* O elemento `form` possui a propriedade CSS `width: 675px`;
+O campo deverá ter a label Moeda.
 
-</details>
+O campo deverá ser um <select>.
 
-## 6. Faça com que a direção do formulário seja vertical
+As opções do select serão preenchidas através da consulta à API. Isso será feito em um requisito mais a frente. Nesse momento você pode deixar o <select> vazio.
 
-<details>
-  <summary>
-    A direção dos itens do formulário com o <code>id</code> igual a <code>evaluation-form</code> devem estar na vertical
- </summary><br/>
+Um campo para adicionar qual método de pagamento será utilizado.
 
-* Acrescente no formulário com `id` igual a `evaluation-form` a propriedade que muda a direção do elemento.
+O campo deverá ter a label Método de pagamento.
 
-**O que será testado:**
+Este campo deve ser um <select>. A pessoa usuária deve poder escolher entre os campos: 'Dinheiro', 'Cartão de crédito' e 'Cartão de débito'.
 
-* O elemento `evaluation-form` possui a propriedade CSS `flex-direction: column`.
+Um campo para selecionar uma categoria (tag) para a despesa.
 
-</details>
+Este campo deve ser um <select>. A pessoa usuária deve poder escolher entre os campos: 'Alimentação', 'Lazer', 'Trabalho', 'Transporte' e 'Saúde'.
 
-## 7. Adicione a logo da Trybewarts ao lado direito da página
+O campo deverá ter a label Tag.
 
-  <details>
-  <summary>
-  O elemento deve ser uma tag <code>img</code> com o <code>id</code> igual a <code>trybewarts-forms-logo</code>
-  </summary><br/>
+7. Implemente a lógica para preencher as opções do campo "Moedas", buscando as siglas das moedas da API:
+Ao entrar na página /carteira, você deverá fazer uma requisição para a API das moedas e preencher as opções do <select> de "Moedas" com os valores retornados. Utilizando as siglas das moedas.
 
-* Crie um elemento `img` com o `id` igual a `trybewarts-forms-logo`;
-* Adicione o atributo `src` com o valor `images/trybewarts-colored.svg`;
-* Adicione o estilo css `height` de `500px`;
+As opções devem conter os valores: 'USD', 'CAD', 'EUR', 'GBP', 'ARS', 'BTC', 'LTC', 'JPY', 'CHF', 'AUD', 'CNY', 'ILS', 'ETH' e 'XRP'.
 
-**O que será testado:**
+Esses valores devem vir da API através do endpoint: https://economia.awesomeapi.com.br/json/all.
 
-* Existe um elemento `img` com o `id` igual a `trybewarts-forms-logo`;
-* O elemento possui o atributo `src` apontando para `images/trybewarts-colored.svg`;
-* A imagem possui o estilo css `height` igual a `500px`;
+Remova das informações trazidas pela API a opção 'USDT' (Dólar Turismo).
 
-</details>
+8. Desenvolva a opção de "Adicionar despesa" na sua tabela de gastos
+Desenvolva a funcionalidade do botão "Adicionar despesa" de modo que ao clicar no botão, as seguintes ações sejam executadas:
 
-## 8. Acrescente inputs de `nome, sobrenome` e `email` ao formulário
+Os valores dos campos devem ser salvos no estado da aplicação, na chave expenses, dentro de um array contendo todos gastos que serão adicionados:
 
-<details>
-  <summary>
-    Dentro do formulário com id <code>evaluation-form</code> adicione os inputs de <code>nome, sobrenome</code> e <code>email</code>
-  </summary> <br />
+O id da despesa deve ser um número sequencial, começando em 0. Ou seja: a primeira despesa terá id 0, a segunda terá id 1, a terceira id 2, e assim por diante.
 
-* Crie um input com o `id` igual a `input-name`:
-  * Adicione o atributo `placeholder` com o valor `Nome`;
-* Crie um input com o `id` igual a `input-lastname`:
-  * Adicione o atributo `placeholder` com o valor `Sobrenome`;
-* Crie um input com o `id` igual a `input-email`:
-  * Adicione o atributo `placeholder` com o valor `Email`.
+Você deverá salvar a cotação do câmbio feita no momento da adição para ter esse dado quando for efetuar uma edição do gasto. Caso você não tenha essa informação salva, o valor da cotação trazida poderá ser diferente do obtido anteriormente.
 
-**O que será testado:**
+Atenção nesse ponto: você deverá fazer uma requisição para API e buscar a cotação no momento que o botão de Adicionar despesa for apertado. Para isso você deve utilizar um thunk. Atente-se ao formato do objeto da despesa descrito abaixo: o valor retornado pela API deverá ficar dentro da chave exchangeRates.
 
-* Existe um input com o `id` igual a `input-name` e placeholder `Nome`;
-* Existe um input com o `id` igual a `input-lastname` e placeholder `Sobrenome`;
-* Existe um input com o `id` igual a `input-email` e placeholder `Email`.
+Após adicionar a despesa, atualize a soma total das despesas. Essa informação deve ficar no header dentro do elemento com data-testid="total-field"
 
-</details>
+As despesas salvas no Redux ficarão com um formato semelhante ao seguinte:
 
-## 9. Acrescente um `select` ao formulário
+Clique para expandir.
+Tabela de Gastos
+9. Desenvolva uma tabela com os gastos contendo as seguintes características:
+A tabela deve possuir um cabeçalho exatamente com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido, Moeda de conversão e Editar/Excluir
 
-<details>
-  <summary>
-    O formulário com <code>id</code> igual a <code>evaluation-form</code> deve possuir um input de <code>select</code> com as opções <code>Gitnória, Reactpuff, Corvinode</code> e <code>Pytherina</code>
-  </summary> <br />
+Atente-se ao formato semântico da tabela. Utilize os elementos corretos para o cabeçalho, para as linhas e para as células.
 
-* Crie um `select` com o `id` igual a `house`;
-* Adicione ao `select`:
-  * a opção `Gitnória` com o `id` igual a `gitnoria-house` e o atributo `value` igual a `Gitnória`;
-  * a opção com `text` e `value` igual a `Reactpuff` e com o `id` igual a `reactpuff-house`;
-  * a opção com `text` e `value` igual a `Corvinode` e com o `id` igual a `corvinode-house`;
-  * a opção com `text` e `value` igual a `Pytherina` e com o `id` igual a `pytherina-house`.
+A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.
 
-**O que será testado:**
+O campo de Moeda e Moeda de Conversão deverão conter o nome da moeda. Portanto, ao invés de 'USD' ou 'EUR', deve conter "Dólar Comercial" e "Euro", respectivamente
 
-* Existe um elemento `select` com o id `house`;
-* Existe um elemento `option` com `text` e `value` igual a `Gitnória` e com o `id` igual a `gitnoria-house`;
-* Existe um elemento `option` com `text` e `value` igual a `Reactpuff` e com o `id` igual a `reactpuff-house`;
-* Existe um elemento `option` com `text` e `value` igual a `Corvinode` e com o `id` igual a `corvinode-house`;
-* Existe um elemento `option` com `text` e `value` igual a `Pytherina` e com o `id` igual a `pytherina-house`.
+Por padrão, o campo 'Moeda de conversão' exibirá 'Real'
 
-</details>
+Atenção também às casas decimais dos campos. Como são valores contábeis, eles devem apresentar duas casas após a vírgula. Arredonde sua resposta somente na hora de renderizar o resultado, e para os cálculos utilize sempre os valores vindos da API (utilize o campo ask que vem da API).
 
-## 10. Posicione os campos de `Nome` e `Sobrenome` lado a lado
+Utilize sempre o formato 0.00 (número - ponto - duas casas decimais)
 
-<details>
-  <summary>
-    Os campos de <code>Nome</code> e <code>Sobrenome</code> devem estar lado a lado
-  </summary> <br />
+O que será testado:
 
-  * Faça com que os campos de de `Nome` e `Sobrenome` fiquem lado a lado.
+- A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão.
+- A tabela deve ser alimentada pelo estado da aplicação, que estará disponível na chave expenses que vem do reducer wallet.
+10. Crie um botão para deletar uma despesa da tabela contendo as seguintes características:
+image
 
-**O que será testado:**
+O botão deve estar na linha da tabela e deve possuir data-testid="delete-btn".
 
-* O campo de `Sobrenome` está à direita do campo de `Nome`.
+Ao ser clicado, o botão deleta a linha da tabela, alterando o estado global.
 
-</details> 
+O que será testado:
 
-## 11. Posicione os campos de `Email` e `Casa` lado a lado
+- O botão deve estar dentro do último item da linha da tabela e deve possuir `data-testid="delete-btn"`
+- Ao ser clicado, o botão deleta a linha da tabela, alterando o estado global
+Bônus
+11. Crie um botão para editar uma despesa da tabela contendo as seguintes características:
+image
 
-<details>
-  <summary>
-    Os campos de <code>Email</code> e <code>Casa</code> devem estar lado a lado
-  </summary> <br />
+O botão deve estar dentro da linha da tabela e deve possuir data-testid="edit-btn"
 
-* Faça com que os campos `Email` e `Casa` fiquem lado a lado.
+Ao ser clicado, o botão habilita um formulário para editar a linha da tabela. Ao clicar em "Editar despesa" ela é atualizada, alterando o estado global.
 
-**O que será testado:**
+O formulário deverá ter os mesmos data-testid do formulário de adicionar despesa. Você pode reaproveitá-lo.
 
-* O campo de `Casa` está à direita do campo de `Email`.
+O botão para submeter a despesa para edição deverá conter exatamente o texto "Editar despesa"
 
-</details>
+Atenção: o câmbio utilizado na edição deve ser o mesmo do cálculo feito na adição do gasto.
 
-## 12. Adicione 3 inputs do tipo `radio` ao formulário
+O que será testado:
 
-<details>
-  <summary>
-    O formulário deve possuir um campo de entrada com 3 inputs do tipo <code>radio</code> para que a pessoa estudante escolha qual família se identifica
-  </summary> <br />
-
-* Crie uma `label` com o `id` igual a `label-family` e acrescente o texto **"Qual sua família?"**;
-* Adicione ao formulário os seguintes elementos:
-  * um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `Frontend`;
-  * um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `Backend`;
-  * um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `FullStack`;
-* Posicione os `radio buttons` para ficar abaixo um do outro e na sequência: **Frontend**, **Backend** e **FullStack**
-* Posicione os radio buttons abaixo da `label`.
-
-**O que será testado:**
-
-* Existe um elemento `label` com o `id` igual a `label-family` que possui o conteúdo de texto `Qual sua família?`;
-* Existe um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `Frontend`;
-* Existe um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `Backend`;
-* Existe um `input` do tipo `radio` com o atributo `name` igual a `family` e `value` igual a `FullStack`;
-* Os inputs do tipo `radio` estão um abaixo do outro na sequência `Frontend`, `Backend` e `FullStack`.
-* Os inputs do tipo `radio` estão abaixo do texto da `label`
-
-</details>
-
-## 13. Crie inputs do tipo `checkbox`
-
-<details>
-  <summary>
-    Os campos de entrada do tipo <code>checkbox</code> devem conter seis opções: <code>Hofs, Jest, Promises, React, SQL, Python</code>
-  </summary> <br />
-
-* Crie um elemento com o `id` igual a `label-content` e acrescente o texto **"Qual conteúdo você está com mais vontade de aprender?"**;
-* Crie um input do tipo `checkbox` com a classe `subject` e o `value` igual a `HoFs`;
-* Crie um input do tipo `checkbox` com a classe `subject` o `value` igual a `Jest`;
-* Crie um input do tipo `checkbox` com a classe `subject` o `value` igual a `Promises`;
-* Crie um input do tipo `checkbox` com a classe `subject` o `value` igual a `React`;
-* Crie um input do tipo `checkbox` com a classe `subject` o `value` igual a `SQL`;
-* Crie um input do tipo `checkbox` com a classe `subject` o `value` igual a `Python`;
-* Posicione as checkboxes abaixo da label.
-
-**O que será testado:**
-
-* Existe um elemento `label` com o `id` igual a `label-content` que possui um conteúdo de texto `Qual conteúdo você está com mais vontade de aprender?`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `HoFs`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `Jest`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `Promises`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `React`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `SQL`;
-* Existe um `input` do tipo `checkbox` com a classe `subject` e o atributo `value` igual a `Python`;
-* Os elementos `checkbox` então posicionados abaixo da label.
-
-</details>
-
-## 14. Crie um campo de avaliação
-
-<details>
-  <summary>
-    O campo deve possuir 10 inputs do tipo <code>radio</code> para avaliar de 1 a 10 o nível de satisfação com a Trybewarts
-  </summary> <br />
-
-* Crie uma `label` com o `id` igual a `label-rate` e acrescente o texto **"Como você avalia a Trybewarts?"**;
-* Crie 10 `radio buttons`, contendo as opções de 1 a 10:
-  * Adicione o atributo `value` com o valor de 1 a 10;
-* Adicione ao atributo `name` dos `radios buttons` o valor `rate`;
-* Posicione os `radio buttons` para ficar lado a lado.
-
-**O que será testado:**
-
-* Existe um elemento `label` com o `id` igual a `label-rate` que possui um conteúdo de texto `Como você avalia a Trybewarts?`;
-* Existem 10 `radio-buttons` com o atributo `name="rate"`;
-* Existem 10 `radio-buttons` contendo o atributo `value` de 1 a 10.
-
-</details>  
-
-## 15. Crie uma textarea
-<details>
-  <summary>
-    O número máximo de caracteres da <code>textarea</code> deve ser igual à 500
-  </summary> <br />
-
-* Crie uma `textarea`;
-* Crie uma label com a classe `textarea` e que possua o texto **"Deixe seu comentário:"**;
-* Adicione ao elemento `textarea` o limite de 500 caracteres.
-
-**O que será testado:**
-
-* Existe uma `label` com a classe `textarea` e o texto `Deixe seu comentário:`;
-* O elemento `textarea` possui um limite de 500 caracteres.
-
-</details>
-
-## 16. Valide as informações do formulário
-
-<details>
-  <summary>
-     Adicione um campo de entrada do tipo <code>checkbox</code> que deve validar a permissão de uso das informações
-  </summary> <br /> 
-
-* Crie um campo de entrada do tipo `checkbox` com o `id` igual a `agreement`;
-* Crie uma label com o `id` igual a `label-infos` e que possua o texto **"Você concorda com o uso das informações acima?"**;
-* Posicione o `checkbox` ao lado da label.
-
-**O que será testado:**
-
-* Existe uma label com o `id` igual a `label-infos` que possui o texto `Você concorda com o uso das informações acima?`;
-* Existe um input do tipo `checkbox` com o `id` igual a `agreement`;
-
-</details> 
-
-## 17. Crie um botão de "Enviar" para submeter o formulário
-
-<details>
-  <summary>
-    O botão para submeter o formulário deve ser do tipo <code>submit</code> e possuir o <code>id</code> igual a <code>submit-btn</code>
-  </summary> <br />
-
-* Crie um botão do tipo `submit` com o `id` igual a `submit-btn`;
-* Adicione o texto **"Enviar"** ao botão.
-
-**O que será testado:**
-
-* Existe um botão do tipo `submit` com o id `submit-btn` e o texto `Enviar`;
-
-</details>  
-
-## 18. Habilite o botão "Enviar" após a validação do `checkbox`
-
-<details>
-  <summary>
-    O botão deve ser habilitado somente se o <code>checkbox</code> com o <code>id</code> igual a <code>agreement</code> estiver selecionado
-  </summary> <br />
-
-* Desabilite o botão caso o `checkbox` não esteja selecionado;
-* Habilite o botão caso o `checkbox` seja selecionado.
-
-**O que será testado:**
-
-* O botão está inicialmente desabilitado;
-* O botão torna-se habilitado ao marcar o campo com `id` igual a `agreement`;
-
-</details>  
-
-## 19. Crie um rodapé ao final da página
-
-<details>
-  <summary>
-    O rodapé deverá conter o texto <strong>"Direitos reservados à Trybewarts©"</strong>
-  </summary> <br />
-
-* Crie um rodapé com o texto **"Direitos reservados à Trybewarts©"**.
-
-**O que será testado:**
-
-* Existe um elemento `footer` deve possuir o texto `Direitos reservados à Trybewarts©`.
-
-</details>  
-
----
-
-# Requisitos Bônus
-
-## 20. Crie um contador de caracteres
-
-<details>
-  <summary>
-    O contador deve possuir o <code>id</code> igual a <code>counter</code> contendo o número de caracteres, que deverá ser atualizado a medida que algo for digitado na <code>textarea</code>
-  </summary> <br />
-
-* Crie o contador e adicione o `id` igual a `counter`;
-* Adicione ao contador o valor inicial de `500`:
-  * O contador deve variar entre `500` caracteres e `0`;
-* Decremente o contador a medida que algo for escrito no campo `textarea`;
-* Incremente o contador a medida que algo for deletado no campo `textarea`;
-* Adicione ao elemento `textarea` o `id` igual a `textarea`.
-
-**O que será testado:**
-
-* Existe um elemento com o id `counter`;
-* Existe um elemento com o id `textarea`;
-* O preenchimento do campo de `textarea` altera o número apresentado no elemento `#counter`;
-
-</details>
-
-## 21. Substitua o formulário pelas informações da pessoa estudante
-
-<details>
-  <summary>
-    Faça com que, ao clicar no botão <code>Enviar</code>, o conteúdo dentro da tag <code>form</code> seja substituído pelas informações preenchidas pela pessoa estudante
-  </summary> <br />
-
-* Crie um elemento com `id` igual a `form-data` e dentro dele:
-  * Crie um campo que vai receber o nome digitado pela pessoa usuária, no formato `Nome: Alguem Aqui`;
-  * Crie um campo que vai receber o email digitado pela pessoa usuária, no formato `Email: email@mail.com`;
-  * Crie um campo que vai receber a casa escolhida pela pessoa usuária, no formato `Casa: Casa Escolhida`;
-  * Crie um campo que vai receber a família selecionada pela pessoa usuária, no formato `Família: Família Escolhida`;
-  * Crie um campo que vai receber os conteúdos selecionados pela pessoa usuária, no formato `Matérias: Matérias, Marcadas, Aqui`;
-  > **De olho na dica 👀 :** os conteúdos devem estar separados por uma vírgula e um espaço
-  * Crie um campo que vai receber a avaliação selecionada pela pessoa usuária, no formato `Avaliação: NotaAqui`;
-  * Crie um campo que vai receber o comentário digitado pela pessoa usuária, no formato `Observações: Observações aqui`.
-  * Substitua os campos do formulário campos do pelas informações da pessoa usuária;
-
-**O que será testado:**
-
-* O elemento `<form>` com `id` igual a `form-data` deve ser exibido na tela;
-* Ao clicar no botão de enviar, existe um texto no formato `Nome: -Nome- -Sobrenome-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Email: -Email-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Casa: -Casa-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Família: -Família-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Matérias: -Matérias Selecionadas-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Avaliação: -Avaliação-`;
-* Ao clicar no botão de enviar, existe um texto no formato `Observações: -Observações-`;
-* Ao enviar as informações, o formulário deve ser substituído pelas informações da pessoa usuária.
-
-<img src="./formulario.gif">
-
-</details>
-
----
-
-# Requisito não avaliativo:
-
-Esse requisito **não** é verificado pelo avaliador automático.
-
-## 22. Desenvolva a versão mobile do formulário Trybewarts
-
-<details>
-  <summary>
-    Realize o desenvolvimento da versão mobile do formulário Trybewarts
-  </summary> <br />
-
-* Utilize media queries para inserir breakpoints para telas de diferentes tamanhos;
-* Leve em conta a largura da tela e a experiência do usuário ao reorganizar o layout para dispositivos menores;
-* Tente inserir um 'menu hambúrguer' na barra superior para lidar com o login usando javascript. Se não conseguir, tente criar uma página separada de login, uma prática muito comum;
-* Deixe sua criatividade fluir! Preferimos não avaliar esse requisito justamente pra que você tenha liberdade para executar a responsividade da maneira que você achar mais agradável!
-
-</details>
+- O botão deve estar dentro do último item da linha da tabela e deve possuir `data-testid="edit-btn"
+- Ao ser clicado, o botão habilita um formulário para editar a linha da tabela. Ao clicar em "Editar despesa" ela é atualizada, alterando o estado global
+Avisos Finais
